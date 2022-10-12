@@ -2,10 +2,12 @@ from http import client
 import random
 from sre_constants import SUCCESS
 from instagrapi import Client
+import os
 
-print("LOGIN:") #get login info (not stored externally)
+print("LOGIN:") #enter credentials
 username = input("type username then press enter: ")
 password = input("type password then press enter: ")
+os.system('clear') #clear screen after credential entry
 client = Client() #store client object
 client.login(username, password) #input login info
 print("GOOD LOGIN")
@@ -25,7 +27,7 @@ def unfollowers(): #returns list of unfollowers
     print("missing followers: ", unfollowers)
     return unfollowers
 
-def unfollowAction():
+def unfollowAction(unfollowers):
     while True: 
         unfollow = input("Do you want to unfollow any of these users? (y/n)") 
         if unfollow == "y":
@@ -46,7 +48,7 @@ def unfollowAction():
             print("Enter (y/n)!!")
 
 
-unfollowers()
-unfollowAction()
+list = unfollowers()
+unfollowAction(list)
 
 
