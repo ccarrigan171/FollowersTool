@@ -27,27 +27,27 @@ def unfollowers(): #returns list of unfollowers
     print("missing followers: ", unfollowers)
     return unfollowers
 
-def unfollowAction(unfollowers):
-    while True: 
+def unfollowAction(unfollowers): #no return just action
+    while True: #loop the input prompts
         unfollow = input("Do you want to unfollow any of these users? (y/n)") 
         if unfollow == "y":
-            for name in unfollowers:
-                unfollowUser = input("Unfollow: " + name + " ?? (y/n)")
+            for name in unfollowers: #iterate through unfollower names
+                unfollowUser = input("Unfollow: " + name + " ?? (y/n)") #display current unfollower
                 if unfollowUser == "y":
-                    unfollowID = client.user_id_from_username(name)
-                    client.user_unfollow(unfollowID)
-                    print("action successful")
+                    unfollowID = client.user_id_from_username(name) #convert username to ID
+                    client.user_unfollow(unfollowID) # unfollow current ID
+                    print("action successful") 
                 elif unfollowUser == "n":
-                    continue
+                    continue #next user if answer no
                 else:
-                    print("Enter (y/n)!!")
-        elif unfollow == "n":
+                    print("Enter (y/n)!!") #if input not y or n
+        elif unfollow == "n": # user enered n for any users
             print("finished")
-            return
-        else:
+            return # end function
+        else: #catch unexpected input
             print("Enter (y/n)!!")
 
-
+#run the functions
 list = unfollowers()
 unfollowAction(list)
 
